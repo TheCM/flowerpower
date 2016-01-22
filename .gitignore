@@ -5,8 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # ignore all swp files
-/.swp
-
+*.sw[pon]
 # Ignore bundler config.
 /.bundle
 

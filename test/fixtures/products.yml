@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  price: 1.5
-  description: MyText
+  id: 1
+  name: Flower
+  price: 10
+  description: This is example flower 1
 
 two:
-  name: MyString
-  price: 1.5
-  description: MyText
+  id: 2
+  name: Stokrotka
+  price: 20
+  description: This is example flower 2

@@ -18,12 +18,30 @@
         <td><%= product.name %></td>
         <td><%= product.price %></td>
         <td><%= product.description %></td>
+        <td>
+          <div id = "div<%= product.id %>">
+            <label> Quantity </label>
+            <input type="number" name="quantity" id="product<%= product.id %>" value="1" min="1" max="100"/>
+          </div>
+        </td>
         <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'add to cart', order_item_new_path(product) %></td>
+        <td>
+          <div id = "button<%= product.id %>">
+            <input type="button" name="default_button" id="product<%= product.id %>" onclick="myFunction(<%=product.id%>)" value="Add to cart!"></button>
+          </div>
+        </td>
+
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+
+<script type="text/javascript">
+  function myFunction(id) {
+    var quantity = document.getElementById("product"+id).value;
+    window.location.assign("http://localhost:3000/order_item/new?product_id=" + id + "&quantity=" + quantity)
+  }
+</script>
 

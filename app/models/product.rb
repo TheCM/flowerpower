@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  has_many :order_items, dependent: :destroy
+  has_many :order_items
   validates :name, presence: true,
             length: { minumum: 2, maximum: 30}
   validates :price, presence: true

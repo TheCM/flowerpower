@@ -1,0 +1,24 @@
+p id="notice"
+  = notice
+h1
+  Listining order items
+
+table
+  thead
+    tr
+      th
+        Order_id
+      th
+        Product_id
+      th
+        Quantity
+  tbody
+    - @order_items.each do |order_item|
+      tr
+        td
+          = order_item.order_id
+        td
+          = order_item.product_id
+        td
+          = order_item.quantity
+

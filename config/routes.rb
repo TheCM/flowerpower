@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get 'order_item/new'
 
+  get 'order_item/index'
+
   get 'order_item/create'
 
   get 'order_item/show'

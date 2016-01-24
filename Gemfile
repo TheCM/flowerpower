@@ -15,6 +15,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 
+# gem for store session data in active record session store
+gem 'activerecord-session_store'
+# gem for slim extension
 gem 'slim'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

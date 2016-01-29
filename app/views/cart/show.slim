@@ -1,2 +1,36 @@
-<h1>Cart#:show</h1>
-<p>Find me in app/views/cart/:show.html.erb</p>
+p id="notice"
+  = notice
+h1 Twój koszyk
+
+table
+  thead
+    tr
+      th Nazwa produktu
+      th Cena
+      th Ilosc
+      th Suma
+  tbody
+    - @order_items.where(order_id: @current_order).find_each do |order_item|
+      tr
+        td
+          = order_item.product.name
+        td
+          = order_item.product.price
+        td
+          = order_item.quantity
+        td
+          = order_item.product.price * order_item.quantity
+        td
+          = link_to 'szczegóły', order_item.product
+        td
+          = link_to 'Usun', order_item_destroy_path(order_item_id: order_item.id), data: { confirm: 'Czy na pewno chcesz usunąć tą pozycję?' }
+        - @sum = @sum + (order_item.quantity * order_item.product.price)
+    td 
+      b Podsumowanie: 
+    td .
+    td .
+    td =@sum
+- if @sum != 0
+  div class="payment"
+    = button_to "Zaplac",  edit_order_path(@current_order), method: :get
+

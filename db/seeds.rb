@@ -11,3 +11,5 @@ Product.create! id: 2, name: 'Bratek', price: 5.0, description: 'This is example
 Product.create! id: 3, name: 'Pokrzywa', price: 2.0, description: 'This is example flower 3'
 Product.create! id: 4, name: 'Róża', price: 13.0, description: 'This is example flower 4'
 Product.create! id: 8, name: 'Kaktus', price: 20.0, description: 'This is example flower 5'
+
+OrderItem.delete_all

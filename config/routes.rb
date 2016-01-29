@@ -1,19 +1,23 @@
 Rails.application.routes.draw do
 
+  get 'flower_bunch/application'
+  get 'flower_bunch/create'
+
   get 'order_item/new'
-
   get 'order_item/index'
-
   get 'order_item/create'
-
   get 'order_item/show'
+  get 'order_item/destroy'
 
   resources :orders
   resources :products
   resources :order_items
 
   root 'products#index'
+
   get 'cart/show'
+  get 'cart/payment'
+  get 'cart/thanks'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

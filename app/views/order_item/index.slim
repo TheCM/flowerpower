@@ -6,19 +6,24 @@ h1
 table
   thead
     tr
-      th
-        Order_id
-      th
-        Product_id
-      th
-        Quantity
+      th Order_item_id
+      th Order_id
+      th Product_id
+      th Product_name
+      th Quantity
   tbody
     - @order_items.each do |order_item|
       tr
+        td
+          = order_item.id
         td
           = order_item.order_id
         td
           = order_item.product_id
         td
+          = order_item.product.name
+        td
           = order_item.quantity
+        td
+          = link_to 'Destroy', order_item_destroy_path(order_item_id: order_item.id), data: { confirm: 'Are you sure?' }
 

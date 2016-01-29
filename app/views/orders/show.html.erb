@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>First name:</strong>
+  <strong>Imię:</strong>
   <%= @order.first_name %>
 </p>
 
 <p>
-  <strong>Last name:</strong>
+  <strong>Nazwisko:</strong>
   <%= @order.last_name %>
 </p>
 
@@ -16,14 +16,11 @@
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>Adres:</strong>
   <%= @order.address %>
 </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @order.status %>
-</p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to 'Powrot do koszyka', cart_show_path %> |
+<%= link_to 'Edytuj', edit_order_path(@order) %>
+<%= button_to "Wybierz bank online", cart_payment_path, method: :get %>

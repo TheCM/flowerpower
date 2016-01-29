@@ -1,6 +1,25 @@
-<h1>Editing Order</h1>
+<h1>Wpisz dane adresowe</h1>
 
-<%= render 'form' %>
+<%= form_for(@order) do |f| %>
 
-<%= link_to 'Show', @order %> |
-<%= link_to 'Back', orders_path %>
+  <div class="field">
+    <%= f.label :Imię %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :Nazwisko %><br>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :adres %><br>
+    <%= f.text_area :address %>
+  </div>
+  <div class="actions">
+    <%= f.submit :Zatwierdź%>
+  </div>
+<% end %>
+<%= link_to 'Powrót do koszyka', cart_show_path %>

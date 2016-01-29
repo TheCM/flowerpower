@@ -1,37 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Products</h1>
+<h1>Kwiaty dostępne w kwiaciarni</h1>
 
-<table>
+<table class="table-products">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Description</th>
-      <th colspan="3"></th>
+      <th>Wygląd</th>
+      <th>Kwiat</th>
+      <th>Cena</th>
+      <th>Opis</th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.price %></td>
-        <td><%= product.description %></td>
-        <td>
-          <div id = "div<%= product.id %>">
-            <label> Quantity </label>
-            <input type="number" name="quantity" id="product<%= product.id %>" value="1" min="1" max="100"/>
-          </div>
-        </td>
-        <td><%= link_to 'Show', product %></td>
-        <td>
-          <div id = "button<%= product.id %>">
-            <input type="button" name="default_button" id="product<%= product.id %>" onclick="myFunction(<%=product.id%>)" value="Add to cart!"></button>
-          </div>
-        </td>
+      <% if product.name != "Bukiet" %>
+        <tr>
+          <td> <img src="<%= image_path(product.name + ".jpg") %>" alt="<%=product.name%>" class="flower_image" width="300px"/> </td>
+          <td><%= product.name %></td>
+          <td><%= product.price %></td>
+          <td><%= product.description %></td>
+          <td>
+            <div id = "div<%= product.id %>">
+              <label> Ilość </label>
+              <input type="number" name="quantity" id="product<%= product.id %>" value="1" min="1" max="100"/>
+            </div>
+          </td>
+          <td><%= link_to 'Szczegóły  ', product %></td>
+          <td>
+            <div id = "button<%= product.id %>">
+              <input type="button" name="default_button" id="product<%= product.id %>" onclick="myFunction(<%=product.id%>)" value="Dodaj do koszyka!"></button>
+            </div>
+          </td>
 
-      </tr>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

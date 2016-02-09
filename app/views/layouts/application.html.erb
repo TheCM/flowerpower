@@ -16,6 +16,9 @@
       <p> <%= link_to "Twój koszyk", cart_show_path %> </p>
       <p> <%= link_to "Flower Bunch!", flower_bunch_application_path %> </p>
       <hr>
+
+      <p class="notice"> <%= notice %> </p>
+      <p class="alert"> <%= alert %> </p>
       <%= yield %>
   </body>
 </html>

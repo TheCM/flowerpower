@@ -36,11 +36,12 @@ div class="div-application"
     input id="product-update" class="hidden_class" type="button" name="update" value="Zaktualizuj" onclick="updateProduct()"
     input id="product-delete" class="hidden_class" type="button" name="delete" value="Usuń" onclick="deleteProduct()"
     input id="finish-bunch" class="hidden_class" type="button" name="finish" value="Zakończ" onclick="finishBunch()"
-    p
-      input id="checkbox-replay" type="checkbox" name="replay" checked="true" Nie przekierowuj do koszyka po ukończeniu bukietu
-    p class="p-center-section-description" 
-      b Suma:
-    p id="sum-of-products" 0
+    = form_tag(flower_bunch_create_path, id: "finish-form") do
+      = hidden_field_tag('description-field')
+      = number_field_tag("sum-of-products", nil, disabled:true, value: "0")
+      = check_box_tag("checkbox-replay")
+      = label_tag("checkbox-replay", "Stwórz jeszcze jeden bukiet po ukończeniu")
+      = label_tag("Suma:")
 
   div class="div-float div-side"
     b
@@ -49,7 +50,7 @@ div class="div-application"
     div id="div-bunch"
   div class="div-footer"
     p class="p-footer" 
-      b Wybierz własny bukiet!
+      b onclick="parent.paintIt(this, 'green', 'yellow')" Wybierz własny bukiet!
 
 
 
@@ -98,14 +99,14 @@ javascript:
       quantities[last_id] += Number(document.getElementById("product-quantity").value);
       document.getElementById("product-status").innerHTML = "Kwiat zaktualizowano!";
     }
-    document.getElementById("sum-of-products").innerHTML = sumAndEnable();
+    document.getElementById("sum-of-products").value = sumAndEnable();
   }
 
   //Functions that use selection of flower in the bunch
   function updateProduct(){
     quantities[last_show_id] = Number(document.getElementById("product-quantity").value);
     document.getElementById("product-status").innerHTML = "Kwiat zaktualizowano!";
-    document.getElementById("sum-of-products").innerHTML = sumAndEnable();
+    document.getElementById("sum-of-products").value = sumAndEnable();
   }
 
   function deleteProduct(){
@@ -114,7 +115,7 @@ javascript:
     var child = document.getElementById('0'+last_show_id);
     child.parentElement.removeChild(child);
     last_show_id = '0';
-    document.getElementById("sum-of-products").innerHTML = sumAndEnable();
+    document.getElementById("sum-of-products").value = sumAndEnable();
     greenBorder(last);
   }
 
@@ -173,7 +174,11 @@ javascript:
     var len = quantities.length;
     for (index = 1;  index < len; index++){
       if (quantities[index]){
-        flowers += document.getElementById("name" + index).innerHTML + '=' + quantities[index] + ' | ';
+        flowers += quantities[index] + ' x ' + document.getElementById("name" + index).innerHTML;
+        if (index != len - 1)
+          flowers += ', ';
+        else
+          flowers += '.';
       }
     }
     return flowers;
@@ -182,12 +187,10 @@ javascript:
   function finishBunch(){
       var sum = sumAll();
       var flowers = pickUpAllFlowers();
-      var check;
-      if(document.getElementById("checkbox-replay").checked) {
-        check = "true";
-      }
-      else{
-        check = "false";
-      }
-      window.location.assign("http://localhost:3000/flower_bunch/create?price=" + sum + "&description=" + flowers + "&check=" + check);
+
+      document.getElementById("sum-of-products").value = sum;
+      document.getElementById("sum-of-products").disabled = false;
+      document.getElementById("description-field").value = flowers;
+      document.getElementById("finish-form").submit();
+      //window.location.assign("http://localhost:3000/flower_bunch/create?price=" + sum + "&description=" + flowers + "&check=" + check);
   }

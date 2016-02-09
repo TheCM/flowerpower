@@ -20,8 +20,9 @@ module Kwiaciarnia
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     # use active record storing system
-    config.action_dispatch.session_store = :active_record_store 
-
+    config.action_dispatch.session_store = :active_record_store
+    config.assets.compile = true
+    config.assets.precompile = ['*.js', '*.css', '*.css.erb', '*.jpg', '*.coffee', '*.scss']
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
   end

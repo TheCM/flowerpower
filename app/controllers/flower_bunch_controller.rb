@@ -3,7 +3,6 @@ class FlowerBunchController < ApplicationController
     @products = Product.all
   end
 
-
   def create
     #find order id or create new one
     if (!session[:order_id])
@@ -16,7 +15,7 @@ class FlowerBunchController < ApplicationController
 
     #create new product
     #na koncu w description powinny sie znaleźć nazwy i ilość produktów składowych bukietu
-    @bunch = Product.new(:name => "Bukiet", :price => params[:price], :description => params[:description])
+    @bunch = Product.new(:name => "Bukiet", :price => params['sum-of-products'], :description => params['description-field'])
     @bunch.save
 
     #create order item to current order
@@ -26,7 +25,7 @@ class FlowerBunchController < ApplicationController
     @order_item.save!
 
     #Redirect to cart to show there is new product or redirect to FlowerBunch to create new bunch
-    if (params[:check] == "false")
+    if (!params['checkbox-replay'])
       respond_to do |format|
         format.html { redirect_to cart_show_path, notice: 'Dodano nowy bukiet!' }
       end

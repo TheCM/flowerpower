@@ -1,4 +1,5 @@
 class OrderItemController < ApplicationController
+
   def new
     if (!session[:order_id])
       @current_order = Order.new({:first_name => "newName", :last_name => "newLastName", :address => "address", :email => "mail@mail.com", :status => "not initiated"})
@@ -13,14 +14,14 @@ class OrderItemController < ApplicationController
       #@the_text = 'Current order is already done!'
     end
     if !@order_item = OrderItem.find_by(product_id: product_params, order_id: @current_order.id)
-      @order_item = OrderItem.new(quantity: params[:quantity])
+      @order_item = OrderItem.new(quantity: params[:quantity][0].to_i)
       @product = Product.find(product_params)
       @order_item.product = @product
       @order_item.order = @current_order
       @order_item.save!
     else
       @order_item = OrderItem.where(product_id: product_params, order_id: @current_order.id).take
-      @order_item.quantity = @order_item.quantity + params[:quantity].to_i
+      @order_item.quantity = @order_item.quantity + params[:quantity][0].to_i
       @order_item.save
     end
 
@@ -58,6 +59,6 @@ class OrderItemController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
-    params.require(:product_id)
+    params.require(:product)
   end
 end

@@ -3,7 +3,6 @@
 <h1>Kwiaty dostępne w kwiaciarni</h1>
 
 <table class="table-products">
-  <thead>
     <tr>
       <th>Wygląd</th>
       <th>Kwiat</th>
@@ -11,41 +10,34 @@
       <th>Opis</th>
       <th colspan="4"></th>
     </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <% if product.name != "Bukiet" %>
-        <tr>
-          <td> <img src="<%= image_path(product.name + ".jpg") %>" alt="<%=product.name%>" class="flower_image" width="300px"/> </td>
-          <td><%= product.name %></td>
-          <td><%= product.price %></td>
-          <td><%= product.description %></td>
-          <td>
-            <div id = "div<%= product.id %>">
-              <label> Ilość </label>
-              <input type="number" name="quantity" id="product<%= product.id %>" value="1" min="1" max="100"/>
-            </div>
-          </td>
-          <td><%= link_to 'Szczegóły  ', product %></td>
-          <td>
-            <div id = "button<%= product.id %>">
-              <input type="button" name="default_button" id="product<%= product.id %>" onclick="myFunction(<%=product.id%>)" value="Dodaj do koszyka!"></button>
-            </div>
-          </td>
-
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
 </table>
 
+<% @products.each do |product| %>
+    <%= form_tag(order_item_new_path) do %>
+      <table class="table-products">
+        <tr>
+          <% if product.name != "Bukiet" %>
+            <td>
+              <img src="<%= image_path(product.name + ".jpg") %>" alt="<%=product.name%>" class="flower_image" width="300px"/> 
+              <%= hidden_field_tag('product', product.id) %>
+            </td>
+            <td> <%= product.name %> </td>
+            <td><%= product.price %></td>
+            <td><%= product.description %></td>
+            <td>
+              <div id = "div<%= product.id %>">
+                <%=label_tag(:quantity_label, "Ilość") %>
+                <%=number_field(:quantity, nil, in: 1..100, id: 'product' + product.id.to_s, value: "1")  %>
+              </div>
+            </td>
+            <td><%= link_to 'Szczegóły  ', product %></td>
+            <td>
+              <%= submit_tag("Dodaj do koszyka!") %>
+            </td>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
+<% end %>
+
 <br>
-
-<script type="text/javascript">
-  function myFunction(id) {
-    var quantity = document.getElementById("product"+id).value;
-    window.location.assign("http://localhost:3000/order_item/new?product_id=" + id + "&quantity=" + quantity)
-  }
-</script>
-

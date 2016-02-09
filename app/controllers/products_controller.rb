@@ -23,6 +23,7 @@ class ProductsController < ApplicationController
 
   # POST /products
   # POST /products.json
+
   def create
     @product = Product.new(product_params)
 

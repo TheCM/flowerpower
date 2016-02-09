@@ -1,0 +1,1 @@
+(function(){var l;l=function(l,o,n){return l.style.backgroundColor=o,null!=n?l.style.color=n:void 0}}).call(this);

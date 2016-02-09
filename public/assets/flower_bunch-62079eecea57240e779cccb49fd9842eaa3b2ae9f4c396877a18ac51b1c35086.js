@@ -1,0 +1,1 @@
+(function(){var n,o;o=function(n){return n*n},n=function(n,o,l){return n.style.backgroundColor=o,null!=l?n.style.color=l:void 0}}).call(this);

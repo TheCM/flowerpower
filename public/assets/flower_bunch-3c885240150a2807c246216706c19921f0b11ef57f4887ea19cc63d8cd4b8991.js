@@ -1,0 +1,1 @@
+(function(){this.square=function(n){return n*n}}).call(this);

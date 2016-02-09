@@ -1,0 +1,1 @@
+(function(){this.square=function(t){return t*t},this.paintIt=function(t,n,o){return t.style.backgroundColor=n,null!=o?t.style.color=o:void 0}}).call(this);

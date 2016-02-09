@@ -1,0 +1,229 @@
+/* line 9, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+.flower-bunch-header {
+  color: #007700;
+  font-size: 50px;
+  margin-left: 10%;
+}
+
+/* line 15, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+.div-application {
+  margin-left: 15%;
+  font-family: verdana;
+}
+
+/* line 20, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+.div-side {
+  border-style: solid;
+  border-color: white;
+  width: 20%;
+  height: 500px;
+  background-color: #DDDDDD;
+  overflow: scroll;
+}
+
+/* line 29, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+.div-center {
+  width: 40%;
+  height: 500px;
+  border-style: solid;
+  border-color: white;
+  background-color: #FFD633;
+  overflow: scroll;
+}
+
+/* line 38, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+.div-float {
+  float: left;
+}
+
+/* line 43, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+.div-footer {
+  width: 77%;
+  float: left;
+  height: 100px;
+  background-color: grey;
+}
+
+/* line 50, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+.p-footer {
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  font-family: verdana;
+}
+
+/* line 57, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+.p-side-section-header {
+  color: black;
+  font-size: 17px;
+  text-align: center;
+  font-family: verdana;
+}
+
+/* line 64, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+.p-center-section-header {
+  color: #007700;
+  font-size: 17px;
+  text-align: center;
+  font-family: verdana;
+}
+
+/* line 71, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+.p-center-section-description {
+  font-family: verdana;
+}
+
+/* line 78, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+.hidden_class {
+  visibility: hidden;
+  margin: none;
+  padding: none;
+}
+
+/* line 84, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+.flower-image-big {
+  width: 200px;
+  height: 200px;
+  margin: 15px;
+}
+
+/* line 90, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+.flower-image {
+  width: 170px;
+  height: 170px;
+  margin: 15px;
+  border-color: green;
+  border-width: 10px;
+}
+
+/* line 98, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+#div-big-image {
+  float: right;
+}
+
+/* line 102, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+#product-status {
+  color: green;
+  text-align: center;
+}
+
+/* line 107, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/flower_bunch.scss */
+#finish-bunch {
+  float: right;
+  margin-top: 25%;
+}
+/* line 5, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/products.scss */
+.table-products {
+  border-style: "solid";
+  border-width: 5px;
+}
+/* line 1, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/scaffolds.scss */
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 9, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/scaffolds.scss */
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 15, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/scaffolds.scss */
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+/* line 21, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/scaffolds.scss */
+a {
+  color: #000;
+}
+/* line 24, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/scaffolds.scss */
+a:visited {
+  color: #666;
+}
+/* line 28, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/scaffolds.scss */
+a:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+/* line 35, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/scaffolds.scss */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/* line 40, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/scaffolds.scss */
+#notice {
+  color: green;
+}
+
+/* line 44, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/scaffolds.scss */
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+/* line 50, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/scaffolds.scss */
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+/* line 58, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/scaffolds.scss */
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+/* line 69, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/scaffolds.scss */
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+/* line 75, /home/thecm/webowe/RoR/projektowanie/anotherflowergarden/kwiaciarnia/app/assets/stylesheets/scaffolds.scss */
+.table-products {
+  border-style: "solid";
+  border-width: 5px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
+
+body{
+  background-color: #b3e2ff;
+}
+
+.table-products {
+  border-style: "solid";
+  border-width: 5px;
+}

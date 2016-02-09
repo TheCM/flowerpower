@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
 
-  get 'flower_bunch/application'
-  get 'flower_bunch/create'
-
-  get 'order_item/new'
-  get 'order_item/index'
-  get 'order_item/create'
-  get 'order_item/show'
-  get 'order_item/destroy'
-
   resources :orders
   resources :products
   resources :order_items
 
   root 'products#index'
+
+  get 'flower_bunch/application'
+  post 'flower_bunch/create'
+
+  post 'order_item/new'
+  get 'order_item/index'
+  get 'order_item/create'
+  get 'order_item/show'
+  get 'order_item/destroy'
 
   get 'cart/show'
   get 'cart/payment'

@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
 
+
   devise_for :users
   resources :orders
   resources :products
   resources :order_items
 
-  root 'products#index'
+  root 'main_site#main_site'
+
+  get 'main_site/main_site'
+  get 'main_site/contact'
+  get 'main_site/about'
 
   get 'flower_bunch/application'
   post 'flower_bunch/create'
@@ -19,6 +24,15 @@ Rails.application.routes.draw do
   get 'cart/show'
   get 'cart/payment'
   get 'cart/thanks'
+
+
+  get 'flower_management/main_menu'
+  get 'flower_management/flower_list'
+  post 'flower_management/delete_all_bunches'
+  post 'flower_management/delete_all_order_items'
+  get 'flower_management/new_product'
+  post 'flower_management/create_product'
+
   get 'user/registration_new'
   get 'user/data_edit'
   get 'user/list_of_users'

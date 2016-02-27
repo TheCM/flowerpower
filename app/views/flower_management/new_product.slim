@@ -1,0 +1,30 @@
+h1 New Product
+
+
+= form_tag(flower_management_create_product_path) do
+
+  div class="field"
+    = label_tag :nazwa
+    = text_field_tag 'product[name]'
+  br
+
+  div class="field"
+    = label_tag :cena
+    = text_field_tag 'product[price]'
+  br
+
+  div class="field"
+    = label_tag :opis
+    = text_area_tag 'product[description]'
+  br
+
+  div class="field"
+    = label_tag :zdjęcie
+    = file_field_tag 'product[image]', :accept => 'image/png,image/jpg'
+  br
+
+  div class="actions"
+    = submit_tag 'Zapisz'
+
+
+= link_to 'Powrót', flower_management_main_menu_path

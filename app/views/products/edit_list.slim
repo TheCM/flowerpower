@@ -1,0 +1,35 @@
+h1 Kwiaty dostępne / kwiaciarni
+
+table class="table-products"
+    tr
+      th Wygląd
+      th Kwiat
+      th Cena
+      th Opis
+      th colspan="4"
+
+
+- @products.each do |product|
+    = form_tag(order_item_new_path) do
+      table class="table-products"
+        tr
+          - if product.name != "Bukiet"
+            td
+              img src="= image_path(product.name + ".jpg") " alt="=product.name" class="flower_image" width="300px"/
+              = hidden_field_tag('product', product.id)
+            td = product.name
+
+            td= product.price
+            td= product.description
+            td
+              div id = "div" +product.id
+                =label_tag(:quantity_label, "Ilość")
+                =number_field(:quantity, nil, in: 1..100, id: 'product' + product.id.to_s, value: "1")
+
+
+            td= link_to 'Szczegóły  ', product
+            td
+              = submit_tag("Dodaj do koszyka!")
+br
+hr
+p = link_to "Zaloguj się jako pracownik", new_user_session_path

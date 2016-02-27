@@ -1,0 +1,10 @@
+h1 Panel kontroli kwiaciarni
+
+div class="div-button"
+  = button_to "Dodaj produkt", flower_management_new_product_path, { method: 'get'}
+div class="div-button"
+  = button_to "Modyfikuj produkty", flower_management_flower_list_path, { method: 'get'}
+div class="div-button"
+  = button_to "Wyczyść bukiety", flower_management_delete_all_bunches_path
+div class="div-button"
+  = button_to "Wyczyść zamowienia", flower_management_delete_all_order_items_path

@@ -9,7 +9,7 @@ div class="div-application"
 
     - @products.each do |product|
       -if product.name != "Bukiet"
-        img src="#{image_path(product.name + ".jpg")}" alt="#{product.name}" id="#{product.id}" class="flower-image" onclick="greenBorder(#{product.id})"
+        img src="#{image_path(product.name + ".jpg")}" alt="#{product.name}" id="#{product.id}" class="flower-image" onclick="parent.Bunch_controller.greenBorder(#{product.id})"
         div id="name#{product.id}" class="hidden_class" #{product.name}
         div id="price#{product.id}" class="hidden_class" #{product.price}
         div id="description#{product.id}" class="hidden_class" #{product.description}
@@ -31,11 +31,11 @@ div class="div-application"
     label class="p-center-section-description" 
       b Ilość:
     input id="product-quantity" class="hidden_class" type="number" name="quantity" value="1" min="1" max="100"
-    input id="product-add" class="hidden_class" type="button" name="add" value="Dodaj" onclick="addProduct()"
+    input id="product-add" class="hidden_class" type="button" name="add" value="Dodaj" onclick="parent.Bunch_controller.addProduct()"
     br
-    input id="product-update" class="hidden_class" type="button" name="update" value="Zaktualizuj" onclick="updateProduct()"
-    input id="product-delete" class="hidden_class" type="button" name="delete" value="Usuń" onclick="deleteProduct()"
-    input id="finish-bunch" class="hidden_class" type="button" name="finish" value="Zakończ" onclick="finishBunch()"
+    input id="product-update" class="hidden_class" type="button" name="update" value="Zaktualizuj" onclick="parent.Bunch_controller.updateProduct()"
+    input id="product-delete" class="hidden_class" type="button" name="delete" value="Usuń" onclick="parent.Bunch_controller.deleteProduct()"
+    input id="finish-bunch" class="hidden_class" type="button" name="finish" value="Zakończ" onclick="parent.Bunch_controller.finishBunch()"
     = form_tag(flower_bunch_create_path, id: "finish-form") do
       = hidden_field_tag('description-field')
       = number_field_tag("sum-of-products", nil, disabled:true, value: "0")
@@ -49,148 +49,7 @@ div class="div-application"
     hr
     div id="div-bunch"
   div class="div-footer"
-    p class="p-footer" 
-      b onclick="parent.paintIt(this, 'green', 'yellow')" Wybierz własny bukiet!
+    p class="p-footer" id="p-footer"
+      b onclick="parent.Bunch_controller.greenBorder(1)" Wybierz własny bukiet!
 
 
-
-javascript:
-  var last_id = '0';
-  var last_show_id = '0';
-  var quantities = [];
-
-  //Function that makes green border around products in our flowergarden
-  function greenBorder(id){
-    var path = document.getElementById(id.toString()).src;
-
-    if (last_id != '0') {
-      document.getElementById(last_id).style.borderStyle = "none"; 
-    }
-    if (last_show_id != '0') {
-      document.getElementById('0' + last_show_id).style.borderStyle = "none";
-    }
-
-    document.getElementById(id).style.borderStyle = "solid";
-    document.getElementById("product-status").innerHTML = "Oto nasz kwiat:";
-    document.getElementById("product-name").innerHTML = document.getElementById("name"+id).innerHTML;
-    document.getElementById("product-price").innerHTML = document.getElementById("price"+id).innerHTML;
-    document.getElementById("product-description").innerHTML = document.getElementById("description"+id).innerHTML;
-    document.getElementById("product-quantity").style.visibility = "visible";
-    document.getElementById("product-quantity").value = '1';
-    document.getElementById("product-add").style.visibility = "visible";
-    document.getElementById("product-update").style.visibility = "hidden";
-    document.getElementById("product-delete").style.visibility = "hidden";
-    document.getElementById("div-big-image").innerHTML = '<img src="' + path + '" id="00' + last_id + '" class="flower-image-big" />';
-    last_id = id;
-    last_show_id = '0';
-  }
-
-  //Function that adds new product to a bunch
-  function addProduct() {
-    if (!quantities[last_id]) {
-      var path = document.getElementById(last_id.toString()).src;
-      var inner =  document.getElementById("div-bunch").innerHTML;
-      quantities[last_id] = Number(document.getElementById("product-quantity").value);
-     document.getElementById("product-quantity").value = '1';
-      document.getElementById("product-status").innerHTML = "Kwiat dodano!";
-      document.getElementById("div-bunch").innerHTML = inner + '<img src="' + path + '" id="0' + last_id + '" class="flower-image" onclick="showBunchElement(' + last_id + ')" />';
-    }
-    else {
-      quantities[last_id] += Number(document.getElementById("product-quantity").value);
-      document.getElementById("product-status").innerHTML = "Kwiat zaktualizowano!";
-    }
-    document.getElementById("sum-of-products").value = sumAndEnable();
-  }
-
-  //Functions that use selection of flower in the bunch
-  function updateProduct(){
-    quantities[last_show_id] = Number(document.getElementById("product-quantity").value);
-    document.getElementById("product-status").innerHTML = "Kwiat zaktualizowano!";
-    document.getElementById("sum-of-products").value = sumAndEnable();
-  }
-
-  function deleteProduct(){
-    var last = last_show_id;
-    quantities[last_show_id] = null;
-    var child = document.getElementById('0'+last_show_id);
-    child.parentElement.removeChild(child);
-    last_show_id = '0';
-    document.getElementById("sum-of-products").value = sumAndEnable();
-    greenBorder(last);
-  }
-
-  //Function that shows flower in a bunch
-  function showBunchElement(id){
-    var path = document.getElementById(id.toString()).src;
-    if (last_id != '0') {
-      document.getElementById(last_id).style.borderStyle = "none";
-    }
-    if (last_show_id != '0') {
-      document.getElementById('0' + last_show_id).style.borderStyle = "none";
-    }
-    document.getElementById('0'+id).style.borderStyle = "dotted";
-    document.getElementById("product-status").innerHTML = "Oto nasz kwiat:";
-    document.getElementById("product-name").innerHTML = document.getElementById("name"+id).innerHTML;
-    document.getElementById("product-price").innerHTML = document.getElementById("price"+id).innerHTML;
-    document.getElementById("product-description").innerHTML = document.getElementById("description"+id).innerHTML;
-    document.getElementById("product-quantity").value = quantities[id];
-    document.getElementById("product-add").style.visibility = "hidden";
-    document.getElementById("product-update").style.visibility = "visible";
-    document.getElementById("product-delete").style.visibility = "visible";
-    document.getElementById("div-big-image").innerHTML = '<img src="' + path + '" id="00' + last_id + '" class="flower-image-big" />';
-    last_show_id = id;
-    last_id = '0';
-  }
-
-  //Function count the price of all elements in the bunch
-  function sumAll(){
-    var index;
-    var sum = 0;
-    var len = quantities.length;
-    for (index = 1;  index < len; index++){
-      if (quantities[index]){
-        sum += quantities[index] * Number(document.getElementById("price" + index).innerHTML);
-      }
-    }
-    return sum;
-  }
-
-  function sumAndEnable(){
-    var sum = sumAll();
-    var button_status;
-    if (sum > 0){
-      button_status = "visible";
-    }
-    else {
-      button_status = "hidden";
-    }
-    document.getElementById("finish-bunch").style.visibility = button_status;
-    return sum;
-  }
-
-  function pickUpAllFlowers(){
-    var flowers = '';
-    var index = 1;
-    var len = quantities.length;
-    for (index = 1;  index < len; index++){
-      if (quantities[index]){
-        flowers += quantities[index] + ' x ' + document.getElementById("name" + index).innerHTML;
-        if (index != len - 1)
-          flowers += ', ';
-        else
-          flowers += '.';
-      }
-    }
-    return flowers;
-  }
-
-  function finishBunch(){
-      var sum = sumAll();
-      var flowers = pickUpAllFlowers();
-
-      document.getElementById("sum-of-products").value = sum;
-      document.getElementById("sum-of-products").disabled = false;
-      document.getElementById("description-field").value = flowers;
-      document.getElementById("finish-form").submit();
-      //window.location.assign("http://localhost:3000/flower_bunch/create?price=" + sum + "&description=" + flowers + "&check=" + check);
-  }

@@ -12,13 +12,19 @@
     <![endif]-->
   </head>
   <body>
+      <% if current_user  %>
+        <p> Witaj, <%= current_user.email %>!
+        <%= link_to "Panel użytkownika", user_user_panel_path %>
+        </p>
+      <% end %>
       <h1> <%= link_to "Ofeta sklepu", root_url %> </h1>
       <p> <%= link_to "Twój koszyk", cart_show_path %> </p>
       <p> <%= link_to "Flower Bunch!", flower_bunch_application_path %> </p>
+      <p> <%= link_to "Panel administratora", user_admin_panel_path %> </p>
       <hr>
 
-      <p class="notice"> <%= notice %> </p>
-      <p class="alert"> <%= alert %> </p>
+      <p class="notice" id="notice"> <%= notice %> </p>
+      <p class="alert" > <%= alert %> </p>
       <%= yield %>
   </body>
 </html>

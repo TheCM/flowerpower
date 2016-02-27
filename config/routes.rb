@@ -19,6 +19,13 @@ Rails.application.routes.draw do
   get 'cart/show'
   get 'cart/payment'
   get 'cart/thanks'
+  get 'user/registration_new'
+  get 'user/data_edit'
+  get 'user/list_of_users'
+  post 'user/new'
+  post 'user/delete'
+  get 'user/admin_panel'
+  get 'user/user_panel'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

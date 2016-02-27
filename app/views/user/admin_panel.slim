@@ -1,0 +1,11 @@
+h1 class="center" panel admnistratora
+div class="div-button"
+  = button_to "Zarejestruj nowego uzytkownika", new_user_registration_path, {method: 'get'}
+div class="div-button"
+  = button_to "Zaloguj", new_user_session_path, {method: 'get'}
+div class="div-button"
+  = button_to "Wyloguj", destroy_user_session_path, {method: 'delete'}
+div class="div-button"
+  = button_to "Lista zarejestrowanych uzytkownikow", user_list_of_users_path, {method: 'get'}
+div class="div-button"
+  = button_to "Zarzadzanie kwiaciarnią", flower_management_main_menu_path, {method: 'get'}

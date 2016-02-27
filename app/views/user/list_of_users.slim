@@ -1,0 +1,7 @@
+h1 lista uzytkownikow:
+
+- @users.each do |user|
+  p
+    = user.email
+    = button_to "Usun uzytkownika", user_delete_path(user)
+  br

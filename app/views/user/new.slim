@@ -1,0 +1,7 @@
+h1
+  - if !@correct
+    Niepoprawne dane!
+  - elsif !@saved
+    Ten email juz istnieje w bazie!
+  - else
+    Dane zostaly zapisane poprawnie!

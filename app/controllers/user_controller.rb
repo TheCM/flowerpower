@@ -22,20 +22,24 @@ class UserController < ApplicationController
 
 
   def registration_new
+    check_user
     @user = User.new
   end
 
   def list_of_users
+    check_user
     @users = User.all
   end
 
   def delete
+    check_user
     @user = User.find_by(id: params[:format])
     @user.delete
     redirect_to :back
   end
 
   def data_edit
+    check_user
 
   end
 
@@ -44,10 +48,17 @@ class UserController < ApplicationController
   end
 
   def admin_panel
+    check_user
 
   end
 
   def user_panel
+    check_user
+  end
 
+  def check_user
+    if !current_user
+      redirect_to root_path, notice: "Odmowa dostępu"
+    end
   end
 end

@@ -1,31 +1,54 @@
 class FlowerManagementController < ApplicationController
-  def main_menu
 
+
+  def main_menu
+    check_user
   end
 
   def flower_list
+    check_user
+    @uploader = FlowerPictureUploader.new
     @products = Product.all
+    @headers = true
   end
 
   def new_product
-
+    check_user
   end
 
   def create_product
-    product_parameters = product_params
-    @product = Product.new({:name => product_parameters[:name],:price => product_parameters[:price],:description => product_parameters[:description]})
-    image = product_parameters[:image]
-    if correct_file?(image)
-      #zapisz obrazek
-      image = params[:product][:image].original_filename
-      directory = "app/assets/images"
-      path = File.join(directory, image)
-      path2 = File.join(directory, product_parameters[:name])
-      File.open(path, "wb") { |f| f.write(product_parameters[:image].read)}
-      File.rename(path, path2)
-      redirect_to flower_management_main_menu_path, notice: 'A teraz sprawdź lokalizację pliku! '
+    check_user
+    if product_parameters_are_correct?
+      product_parameters = product_params
+      product_parameters[:status] = 'active'
+      @product = Product.new(product_parameters)
+      if @product.save!
+        redirect_to flower_management_main_menu_path, notice: "Udalo sie zapisac produkt " + @product[:name]
+        product_image[:image].original_filename = @product[:id].to_s + '.jpg'
+        @product.image = product_image[:image]
+        @product.save!
+      else
+        redirect_to flower_management_main_menu_path, alert: "Nie udalo sie zapisac produktu"
+      end
     else
-      redirect_to flower_management_new_product_path, notice: 'Nie udało siś zapisać kwiatu - niepoprawny plik. Spróbuj ponownie!'
+      redirect_to request.referer, alert: "Złe parametry!"
+    end
+
+  end
+
+  def update_product
+    check_user
+
+    # variable contains info about product name before change
+    product_update = product_params_for_update
+    @product = Product.find(product_update[:id])
+    # create variable with all updated informations needed to update product (except image)
+    product_params_corrected = product_params
+    product_params_corrected[:status] = product_params_corrected[:status] ? "active" : "not active"
+    if @product.update(product_params_corrected)
+      redirect_to flower_management_flower_list_path, notice: "Modyfikacja produktu " + @product[:name] + " zakończona sukcesem!"
+    else
+      redirect_to flower_management_flower_list_path, alert: "Modyfikacja produktu " + @product[:name] + " zakończona porażką."
     end
   end
 
@@ -38,6 +61,7 @@ class FlowerManagementController < ApplicationController
   end
 
   def delete_all_bunches
+    check_user
     @products = Product.all
     @products_before = @products.size()
 
@@ -51,6 +75,7 @@ class FlowerManagementController < ApplicationController
   end
 
   def delete_all_order_items
+    check_user
     OrderItem.delete_all
 
     respond_to do |format|
@@ -61,7 +86,25 @@ class FlowerManagementController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :price, :description, :image)
+    params.require(:product).permit(:name, :price, :description, :status)
+  end
+
+  def product_params_for_update
+    params.require(:product).permit(:id ,:old_name, :name, :price, :description, :status)
+  end
+
+  def product_image
+    params.require(:product).permit(:image)
+  end
+
+  def check_user
+    if !current_user
+      redirect_to root_path, notice: "Odmowa dostępu"
+    end
+  end
+
+  def product_parameters_are_correct?
+    return product_params[:name] && product_params[:price] && product_image[:image]
   end
 
 end

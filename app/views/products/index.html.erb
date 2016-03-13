@@ -1,22 +1,22 @@
 <h1>Kwiaty dostępne w kwiaciarni</h1>
 
-<table class="table-products">
-    <tr>
-      <th>Wygląd</th>
-      <th>Kwiat</th>
-      <th>Cena</th>
-      <th>Opis</th>
-      <th colspan="4"></th>
-    </tr>
-</table>
-
 <% @products.each do |product| %>
     <%= form_tag(order_item_new_path) do %>
       <table class="table-products">
+        <% if @headers %>
+          <tr>
+            <th> Wygląd </th>
+            <th> Kwiat  </th>
+            <th> Cena   </th>
+            <th> Opis   </th>
+            <th> Ilość </th>
+            <% @headers = false %>
+          <% end %>
+          </tr>
         <tr>
-          <% if product.name != "Bukiet" %>
+          <% if product.name != "Bukiet" and product.status != "not active" %>
             <td>
-              <img src="<%= image_path(product.name + ".jpg") %>" alt="<%=product.name%>" class="flower_image" width="300px"/> 
+              <img src="<%= product.image.url.to_s %>" alt="<%=product.name%>" class="flower_image" width="300px"/> 
               <%= hidden_field_tag('product', product.id) %>
             </td>
             <td> <%= product.name %> </td>

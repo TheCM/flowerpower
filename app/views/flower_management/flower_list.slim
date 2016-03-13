@@ -1,34 +1,41 @@
 h1 Kwiaty dostępne w kwiaciarni
 
-table class="table-products"
-    tr
-      th Wygląd
-      th Kwiat
-      th Cena
-      th Opis
-      th colspan="4"
-
-
 - @products.each do |product|
-    = form_tag(order_item_new_path) do
+    = form_tag(flower_management_update_product_path) do
       table class="table-products"
+        - if @headers 
+          tr
+            th Wygląd
+            th Kwiat
+            th Cena
+            th Opis
+            th colspan="4"
+            - @headers = false
         tr
           - if product.name != "Bukiet"
             td
-              img src = image_path(product.name + ".jpg")  alt="=product.name" class="flower_image" width="300px"
-              = hidden_field_tag('product', product.id)
-            td = product.name
-
-            td = product.price
-            td = product.description
+              img src = product.image.url.to_s  alt="=product.name" class="flower_image" width="300px"
+              = hidden_field_tag('product[id]', product.id)
             td
-              div id = "div#{product.id}"
-                = label_tag(:quantity_label, "Ilość")
-                = number_field(:quantity, nil, in: 1..100, id: 'product' + product.id.to_s, value: "1")
-
-
-            td = link_to 'Szczegóły  ', product
-            td = link_to 'Usuń produkt', product, method: :delete, data: {confirm: 'Are you sure?'}
+              p Nazwa:
+              = text_field_tag('product[name]', product.name)
+              = hidden_field_tag('product[old_name]', product.name)
             td
-              = submit_tag("Dodaj do koszyka!")
+              p Cena:
+              = number_field_tag('product[price]', product.price, in: 1..1000, step: 0.01)
+            td
+              p Opis:
+              = text_area_tag('product[description]', product.description)
+            td
+              p Status:
+              - if product.status == 'active'
+                = check_box_tag('product[status]', true, checked: true)
+              - else
+                = check_box_tag('product[status]', false)
+              = product.status
+            td
+              br
+              = button_to 'Szczegóły  ', product
+              = button_to 'Usuń produkt', product, method: :delete, data: {confirm: 'Are you sure?'}
+              = submit_tag("Modyfikuj")
 br

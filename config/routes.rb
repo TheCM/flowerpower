@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   post 'flower_management/delete_all_order_items'
   get 'flower_management/new_product'
   post 'flower_management/create_product'
+  post 'flower_management/update_product'
 
   get 'user/registration_new'
   get 'user/data_edit'

@@ -16,6 +16,9 @@ class FlowerBunchController < ApplicationController
     #create new product
     #na koncu w description powinny sie znaleźć nazwy i ilość produktów składowych bukietu
     @bunch = Product.new(:name => "Bukiet", :price => params['sum-of-products'], :description => params['description-field'])
+    File.open('app/assets/images/Bukiet.jpg') do |f|
+      @bunch.image = f
+    end
     @bunch.save
 
     #create order item to current order

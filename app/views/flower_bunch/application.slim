@@ -8,8 +8,8 @@ div class="div-application"
     hr
 
     - @products.each do |product|
-      -if product.name != "Bukiet"
-        img src="#{image_path(product.name + ".jpg")}" alt="#{product.name}" id="#{product.id}" class="flower-image" onclick="parent.Bunch_controller.greenBorder(#{product.id})"
+      -if product.name != "Bukiet" and product.status != "not active"
+        img src="#{product.image.url}" alt="#{product.name}" id="#{product.id}" class="flower-image" onclick="parent.Bunch_controller.greenBorder(#{product.id})"
         div id="name#{product.id}" class="hidden_class" #{product.name}
         div id="price#{product.id}" class="hidden_class" #{product.price}
         div id="description#{product.id}" class="hidden_class" #{product.description}

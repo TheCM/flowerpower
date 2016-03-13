@@ -15,6 +15,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'execjs', '~> 2.6.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+# gem for upload images to public directory
+gem 'carrierwave'
 
 
 # gem for store session data in active record session store

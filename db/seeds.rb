@@ -5,11 +5,20 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+# uploader = FlowerPictureUploader.new
 Product.delete_all
-Product.create! id: 1, name: 'Truskawka', price: 8.0, description: 'This is example flower 1'
-Product.create! id: 2, name: 'Bratek', price: 5.0, description: 'This is example flower 2'
-Product.create! id: 3, name: 'Pokrzywa', price: 2.0, description: 'This is example flower 3'
-Product.create! id: 4, name: 'Róża', price: 13.0, description: 'This is example flower 4'
-Product.create! id: 8, name: 'Kaktus', price: 20.0, description: 'This is example flower 5'
+@product = Product.create! id: 1, name: 'Truskawka', price: 8.0, description: 'This is example flower 1', status: 'active'
+@product = Product.create! id: 2, name: 'Bratek', price: 5.0, description: 'This is example flower 2', status: 'active'
+@product = Product.create! id: 3, name: 'Pokrzywa', price: 2.0, description: 'This is example flower 3', status: 'active'
+@product = Product.create! id: 4, name: 'Róża', price: 13.0, description: 'This is example flower 4', status: 'active'
+@product = Product.create! id: 8, name: 'Kaktus', price: 20.0, description: 'This is example flower 5', status: 'active'
+
+@products = Product.all
+@products.each do |product|
+  File.open('app/assets/images/' + product.id.to_s + '.jpg') do |f|
+    product.image = f
+    product.save!
+  end
+end
 
 OrderItem.delete_all

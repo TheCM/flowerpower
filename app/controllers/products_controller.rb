@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    @headers = true
     @products = Product.all
   end
 
@@ -25,11 +26,13 @@ class ProductsController < ApplicationController
   # POST /products.json
 
   def create
-    @product = Product.new(product_params)
+    product_par = product_params
+    product_par[:status] = 'active'
+    @product = Product.new(product_par)
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to @product, notice: 'Produkt stworzono pomyślnie' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -43,7 +46,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to @product, notice: 'Produkt pomyślnie zmodyfikowany' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -57,7 +60,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to request.referer, notice: 'Produkt został pomyślnie usunięty' }
       format.json { head :no_content }
     end
   end
